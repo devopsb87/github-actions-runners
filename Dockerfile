@@ -9,20 +9,12 @@ RUN               dnf module disable nodejs -y && dnf module enable nodejs:22 -y
 # MAVEN
 #RUN               dnf install maven -y
 #RUN                dnf install -y maven
+RUN dnf install -y maven \
+    --setopt=install_weak_deps=False \
+    --nodocs && \
+    dnf clean all && \
+    rm -rf /var/cache/dnf
 
-FROM maven:3.9-eclipse-temurin-17 AS build
-
-WORKDIR /app
-COPY . .
-RUN mvn clean package
-
-FROM eclipse-temurin:17-jre
-
-WORKDIR /app
-
-COPY --from=build /app/target/*.jar app.jar
-
-CMD ["java","-jar","app.jar"]
 # HELM
 RUN               curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 # ARGOCD
