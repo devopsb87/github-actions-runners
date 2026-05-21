@@ -8,7 +8,21 @@ RUN               curl -L "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s
 RUN               dnf module disable nodejs -y && dnf module enable nodejs:22 -y && dnf install nodejs npm -y
 # MAVEN
 #RUN               dnf install maven -y
-RUN                dnf install -y maven
+#RUN                dnf install -y maven
+
+FROM maven:3.9-eclipse-temurin-17 AS build
+
+WORKDIR /app
+COPY . .
+RUN mvn clean package
+
+FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
+
+CMD ["java","-jar","app.jar"]
 # HELM
 RUN               curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 # ARGOCD
