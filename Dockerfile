@@ -1,11 +1,11 @@
 FROM              docker.io/redhat/ubi9
-RUN               curl -L -o /etc/yum.repos.d/hashi.repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-RUN               curl -o /etc/yum.repos.d/docker.repo https://download.docker.com/linux/rhel/docker-ce.repo
-RUN               dnf install libicu make terraform docker-ce-cli unzip -y
-RUN               cd /tmp && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install && rm -rf aws*
-RUN               curl -L "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" -o /bin/kubectl && chmod +x /bin/kubectl
+#RUN               curl -L -o /etc/yum.repos.d/hashi.repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+#RUN               curl -o /etc/yum.repos.d/docker.repo https://download.docker.com/linux/rhel/docker-ce.repo
+#RUN               dnf install libicu make terraform docker-ce-cli unzip -y
+#RUN               cd /tmp && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install && rm -rf aws*
+#RUN               curl -L "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" -o /bin/kubectl && chmod +x /bin/kubectl
 # NODEJS
-RUN               dnf module disable nodejs -y && dnf module enable nodejs:22 -y && dnf install nodejs npm -y
+#RUN               dnf module disable nodejs -y && dnf module enable nodejs:22 -y && dnf install nodejs npm -y
 # MAVEN
 #RUN               dnf install maven -y
 #RUN                dnf install -y maven
