@@ -9,11 +9,7 @@ RUN               dnf module disable nodejs -y && dnf module enable nodejs:22 -y
 # MAVEN
 #RUN               dnf install maven -y
 #RUN                dnf install -y maven
-RUN dnf install -y maven \
-    --setopt=install_weak_deps=False \
-    --nodocs && \
-    dnf clean all && \
-    rm -rf /var/cache/dnf
+#RUN dnf install -y maven
 
 # HELM
 RUN               curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
