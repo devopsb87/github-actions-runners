@@ -12,9 +12,9 @@ RUN               dnf module disable nodejs -y && dnf module enable nodejs:22 -y
 #RUN dnf install -y maven
 
 # HELM
-RUN               curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+#RUN               curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 # ARGOCD
-RUN               curl -sSL -o /bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64 && chmod +x /bin/argocd
+#RUN               curl -sSL -o /bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64 && chmod +x /bin/argocd
 # TRIVY
 RUN               dnf install https://github.com/aquasecurity/trivy/releases/download/v0.65.0/trivy_0.65.0_Linux-64bit.rpm -y
 RUN               useradd github
